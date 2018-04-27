@@ -60,3 +60,68 @@ int		main()
 	printf("%s\n", ft_itoa('A'));
 	return (0);
 }
+/*
+ *
+ * #include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+int len_nb(int nb)
+{
+	int i;
+
+	i = 0;
+	if (nb < 0)
+	{
+		i++;
+		nb *= -1;
+	}
+	while (nb > 0)
+	{
+		nb /= 10;
+		i++;
+	}
+	return (i);
+}
+
+char *ft_itoa(int nb)
+{
+	int i;
+	int len;
+	int n;
+	char *str;
+
+	n = nb;
+	i = 0;
+	len = len_nb(n);
+	if (!(str = (char *)malloc(sizeof(char) * len)))
+		return (NULL);
+	str[len] = '\0';
+	len = len - 1;
+	if (n == 0)
+	{
+		str[0] = '0';
+		return (str);
+	}
+	if (n < 0)
+	{
+		str[0] = '-';
+		n *= -1;
+	}
+	while(n)
+	{
+		str[len] = (n % 10) + '0';
+		n /= 10;
+		len--;
+	}
+	return (str);
+}
+
+
+int		main(void)
+{
+
+	printf("%s\n", ft_itoa(0));
+	return (0);
+}
+ */
