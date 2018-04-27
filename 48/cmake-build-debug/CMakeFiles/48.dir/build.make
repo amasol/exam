@@ -43,10 +43,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/amasol/student/exam/exam/48
+CMAKE_SOURCE_DIR = /Users/amasol/amasol/chalk/exam/exam/48
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/amasol/student/exam/exam/48/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/amasol/amasol/chalk/exam/exam/48/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/48.dir/depend.make
@@ -66,6 +66,6 @@ CMakeFiles/48.dir/clean:
 .PHONY : CMakeFiles/48.dir/clean
 
 CMakeFiles/48.dir/depend:
-	cd /Users/amasol/student/exam/exam/48/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/amasol/student/exam/exam/48 /Users/amasol/student/exam/exam/48 /Users/amasol/student/exam/exam/48/cmake-build-debug /Users/amasol/student/exam/exam/48/cmake-build-debug /Users/amasol/student/exam/exam/48/cmake-build-debug/CMakeFiles/48.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/amasol/amasol/chalk/exam/exam/48/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/amasol/amasol/chalk/exam/exam/48 /Users/amasol/amasol/chalk/exam/exam/48 /Users/amasol/amasol/chalk/exam/exam/48/cmake-build-debug /Users/amasol/amasol/chalk/exam/exam/48/cmake-build-debug /Users/amasol/amasol/chalk/exam/exam/48/cmake-build-debug/CMakeFiles/48.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/48.dir/depend
 

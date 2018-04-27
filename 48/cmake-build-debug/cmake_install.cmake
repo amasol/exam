@@ -1,4 +1,4 @@
-# Install script for directory: /Users/amasol/student/exam/exam/48
+# Install script for directory: /Users/amasol/amasol/chalk/exam/exam/48
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -35,5 +35,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/amasol/student/exam/exam/48/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/amasol/amasol/chalk/exam/exam/48/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
