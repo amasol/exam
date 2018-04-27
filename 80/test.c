@@ -1,58 +1,66 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
-
-int		ft_strlen(char *str)
+/*
+int		ft_slova(char *str)
 {
-	int		i;
+	int	i;
+	int j;
+	char
 
 	i = 0;
-	while (str[i] != '\0')
+	j = 0;
+	while (str[i])
+	{
+		if (str[i] != ' ' && str[i] != '\n' && str[i] != '\t')
+		{
+			j++;
+			while ( str[i] && (str[i] != ' ' && str[i] != '\t' && str[i]))
+				i++;
+			if (str[i] == '\0')
+				return (j);
+		}
 		i++;
-	return (i);
+	}
+	return (j);
 }
-
-void	ft_corect(char *str)
+ */
+char **ft_split(char *str)
 {
 	int i;
+	int j;
+	int k;
+	char **sp;
 
 	i = 0;
-	while (str[i] == ' ' || str[i] == '\t')
+	k = 0;
+	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\t')
 		i++;
-	while ((str[i] != ' ' && str[i] != '\t') && str[i])
+	if (!(sp = (char **)malloc(sizeof(char *) * 256)))
+		return (NULL);
+	while (str[i])
 	{
-		write(1, &str[i], 1);
-		i++;
+		if (!(sp[k] = (char *)malloc(sizeof(char) * 4096)))
+			return (NULL);
+		j = 0;
+		while (str[i] != ' ' && str[i] != '\t' && str[i] != '\n')
+			sp[k][j++] = str[i++];
+		while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n')
+			i++;
+		sp[k][j] = '\0';
+		k++;
 	}
+	sp[k] = NULL;
+	return (sp);
 }
-void 	ft_rev_print(char *str)
+int		main(void)
 {
-	int j;
+	char **st;
+	char *s= "aasdf sdf asdf   sasfd		fasdf ";
 
-	j = 0;
-	j = ft_strlen(&str[j]);
-	j = j - 1;
-	while (j > 0)
-	{
-		while ((str[j] == ' ' || str[j] == '\t') && j > 0)
-			j--;
-		while ((str[j] != ' ' && str[j] != '\t') && j > 0)
-			j--;
-		ft_corect(&str[j]);
-		write(1, " ", 1);
-	}
-	write(1, "\n", 1);
-}
-
-
-int		main(int ac, char **av)
-{
-	if (ac != 2)
-	{
-		write(1, "\n", 1);
-		return (0);
-	}
-	else
-		ft_rev_print(av[1]);
+	st =ft_split(s);
+	int i = 0;
+	while(st[i])
+		printf("%s\n", st[i++]);
 	return (0);
 }
