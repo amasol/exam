@@ -1,15 +1,66 @@
-#include <stdlib.h>
+#include <unistd.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include "ft_list.h"
 
-void 		ft_list_foreach(t_list *begin_list, void (*f)(void *))
+int		ft_strlen(char *str)
 {
-	t_list list_ptr;
+	int i;
 
-	list_ptr = begin_list;
-	while (list_ptr)
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}
+
+void	epur_str(char *str)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	j = ft_strlen(&str[j]);
+	while (str[i] == ' ' || str[i] == '\t')
+		i++;
+	j = j - 1;
+	while (str[j] == ' ' || str[j] == '\t')
+		j--;
+	j++;
+	while (j > i)
 	{
-		(f)(list_ptr->data);
-		list_ptr = list_ptr->next;
+		if ((str[i] != ' ' || str[i] != '\t') && j > i)
+		{
+			write(1, &str[i], 1);
+			i++;
+		}
+		if ((str[i] == ' ' || str[i] == '\t') && j > i)
+		{
+			i++;
+			if ((str[i] == '.'  && str[i] != '\0') && j > i)
+			{
+				write(1, ".", 1);
+				break ;
+			}
+			write(1, " ", 1);
+//			i++;
+		}
+		while ((str[i] == ' ' || str[i] == '\t') && j > i)
+			i++;
+	}
+	write(1, "\n", 1);
+}
+
+int		main(int ac, char **av)
+{
+	if (ac != 2)
+	{
+		write(1, "\n", 1);
+		return (0);
+	}
+	else
+	{
+		epur_str(av[1]);
+		return (0);
 	}
 }
