@@ -19,6 +19,11 @@ int		count(int n)
 	int i;
 
 	i = 0;
+	if (n < 0)
+	{
+		i++;
+		n *= -1;
+	}
 	while (n != 0)
 	{
 		n = n / 10;
@@ -36,10 +41,9 @@ char	*ft_itoa(int nbr)
 
 	n = 0;
 	num = 0;
-	num = nbr < 0 ? -nbr : nbr;
-//	size = nbr > 0 ? count(nbr) : count(nbr) + 1;
+	num = (nbr < 0) ? -nbr : nbr;
 	size = count(nbr);
-	str = (char *)malloc(sizeof(char) *size);
+	str = (char *)malloc(sizeof(char) * size);
 	if (nbr < 0)
 		str[n] = '-';
 	n = size;
@@ -47,22 +51,22 @@ char	*ft_itoa(int nbr)
 		n--;
 	while (num > 10)
 	{
-		str[n] = (num % 10) + '0';
+		str[n] = (num % 10) + 48;
 		num = num / 10;
 		n--;
 	}
-	str[n] = num + '0';
+	str[n] = num + 48;
 	return (str);
 }
 
 int		main()
 {
-	printf("%s\n", ft_itoa('A'));
+	printf("%s\n", ft_itoa(-29));
 	return (0);
 }
+
 /*
- *
- * #include <unistd.h>
+#include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -74,7 +78,7 @@ int len_nb(int nb)
 	if (nb < 0)
 	{
 		i++;
-		nb *= -1;
+		nb = nb * -1;
 	}
 	while (nb > 0)
 	{
@@ -97,10 +101,10 @@ char *ft_itoa(int nb)
 	if (!(str = (char *)malloc(sizeof(char) * len)))
 		return (NULL);
 	str[len] = '\0';
-	len = len - 1;
+	len --;
 	if (n == 0)
 	{
-		str[0] = '0';
+		str[0] = 48;
 		return (str);
 	}
 	if (n < 0)
@@ -110,7 +114,7 @@ char *ft_itoa(int nb)
 	}
 	while(n)
 	{
-		str[len] = (n % 10) + '0';
+		str[len] = (n % 10) + 48;
 		n /= 10;
 		len--;
 	}
@@ -119,9 +123,9 @@ char *ft_itoa(int nb)
 
 
 int		main(void)
-{
+	{
 
-	printf("%s\n", ft_itoa(0));
+	printf("%s\n", ft_itoa(-29));
 	return (0);
 }
- */
+*/

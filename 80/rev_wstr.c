@@ -53,3 +53,5 @@ int		main(int ac, char **av)
 		ft_rev_print(av[1]);
 	return (0);
 }
+
+//пример ---(    123 asd    )

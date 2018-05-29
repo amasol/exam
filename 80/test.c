@@ -1,66 +1,84 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
-/*
-int		ft_slova(char *str)
-{
-	int	i;
-	int j;
-	char
+//#inclide "ft_list.h"
 
-	i = 0;
-	j = 0;
-	while (str[i])
-	{
-		if (str[i] != ' ' && str[i] != '\n' && str[i] != '\t')
-		{
-			j++;
-			while ( str[i] && (str[i] != ' ' && str[i] != '\t' && str[i]))
-				i++;
-			if (str[i] == '\0')
-				return (j);
-		}
-		i++;
-	}
-	return (j);
-}
- */
-char **ft_split(char *str)
+int		ft_count(t_list *lst)
 {
 	int i;
-	int j;
-	int k;
-	char **sp;
 
 	i = 0;
-	k = 0;
-	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\t')
-		i++;
-	if (!(sp = (char **)malloc(sizeof(char *) * 256)))
-		return (NULL);
-	while (str[i])
+	while (lst)
 	{
-		if (!(sp[k] = (char *)malloc(sizeof(char) * 4096)))
-			return (NULL);
-		j = 0;
-		while (str[i] != ' ' && str[i] != '\t' && str[i] != '\n')
-			sp[k][j++] = str[i++];
-		while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n')
-			i++;
-		sp[k][j] = '\0';
-		k++;
+		lst = lst->next;
+		i++;
 	}
-	sp[k] = NULL;
-	return (sp);
 }
-int		main(void)
-{
-	char **st;
-	char *s= "aasdf sdf asdf   sasfd		fasdf ";
 
-	st =ft_split(s);
-	int i = 0;
-	while(st[i])
-		printf("%s\n", st[i++]);
+int		count(t_list *lst)
+{
+	int i;
+
+	i = 0;
+	while (lst)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (i);
+}
+
+t_list	*sort_list(t_list* lst, int (*cmp)(int, int))
+{
+	t_list 	*new;
+	int		len;
+	int		ps;
+
+	ps = 0;
+	len = ft_count(lst);
+	while (len)
+	{
+		new = lst;
+		while (new)
+		{
+			if (tmp->next && (*cmp)(tmp->data, tmp->next->data))
+			{
+				ps = tmp->data;
+				tmp->data = tmp->next->data;
+				tmp->next->data = ps;
+			}
+			tmp = tmp->next;
+		}
+		len--;
+	}
+	return (lst);
+}
+
+
+int	main(void)
+{
+	t_list *a;
+	t_list *b;
+	t_list *c;
+
+
+	a = (t_list *)malloc(sizeof(t_list));
+	b = (t_list *)malloc(sizeof(t_list));
+	c = (t_list *)malloc(sizeof(t_list));
+
+
+	a->data = 1;
+	b->data = 9;
+	c->data = 8;
+
+
+	a->next = b;
+	b->next = c;
+	c->next = NULL;
+
+	a = sort_list(a, ascending);
+	printf("%d\n", a->data);
+	printf("%d\n", b->data);
+	printf("%d\n", c->data);
 	return (0);
 }
