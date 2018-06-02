@@ -13,30 +13,36 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
-
-int		ft_len_do_prb(char *str)
+int		ft_score(char *str)
 {
-	int	i;
+	int i;
+	int j;
 
 	i = 0;
-	while ((str[i] != ' ' && str[i] != '\t' && str[i] != '\n') && str[i])
+	j = 0;
+	while ((str[i] == ' ' || str[i] == '\t' || str[i] == '\n') && str[i])
 		i++;
-	return (i);
+	while ((str[i] != ' ' && str[i] != '\t' && str[i] != '\n') && str[i])
+	{
+		i++;
+		j++;
+	}
+	return (j);
 }
 
-int		ft_kolvo_slov(char *str)
+int		ft_score_words(char *str)
 {
-	int	i;
+	int i;
 	int j;
 
 	i = 0;
 	j = 0;
 	while (str[i])
 	{
-		if (str[i] != ' ' && str[i] != '\t' && str[i] != '\n')
+		if ((str[i] != ' ' && str[i] != '\t' && str[i] != '\n') && str[i])
 		{
 			j++;
-			while ( str[i] && (str[i] != ' ' && str[i] != '\t' && str[i] != '\n'))
+			while ((str[i] != ' ' && str[i] != '\t' && str[i] != '\n') && str[i])
 				i++;
 			if (str[i] == '\0')
 				return (j);
@@ -49,30 +55,30 @@ int		ft_kolvo_slov(char *str)
 char    **ft_split(char *str)
 {
 	int i;
-	int	j;
-	int len;
-	char **sp;
-	char *tmp;
+	int j;
+	int k;
+	char **ps;
 
 	i = 0;
-	len = ft_kolvo_slov(str);
-	if (!(sp = (char **)malloc(sizeof(char *) * (len + 1))))
+	k = 0;
+	if (!(ps = (char **)malloc(sizeof(char *) * (ft_score(str) + 1))))
 		return (NULL);
-	while (i < len)
+	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n')
+		i++;
+	while (str[i])
 	{
 		j = 0;
-		while (*str == ' ' || *str == '\t' || *str == '\n')
-			str++;
-		if (!(tmp = (char *)malloc(sizeof(char) * (ft_len_do_prb(str) + 1))))
+		if (!(ps[k] = (char *)malloc(sizeof(char) * (ft_score_words(str) + 1))))
 			return (NULL);
-		while ((*str != ' ' && *str != '\t' && *str != '\n') && *str)
-			tmp[j++] = *str++;
-		tmp[j] = '\0';
-		*sp++ = tmp;
-		i++;
+		while (str[i] != ' ' && str[i] != '\t' && str[i] != '\n')
+			ps[k][j++] = str[i++];
+		while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n')
+			i++;
+		ps[k][j] = '\0';
+		k++;
 	}
-	*sp = NULL;
-	return (sp - len);
+	ps[k] = NULL;
+	return (ps);
 }
 
 int main(void)
@@ -108,7 +114,7 @@ char **ft_split(char *str)
 
 	i = 0;
 	k = 0;
-	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\t')
+	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n')
 		i++;
 	if (!(sp = (char **)malloc(sizeof(char *) * 256)))
 		return (NULL);

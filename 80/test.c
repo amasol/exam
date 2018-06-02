@@ -3,19 +3,7 @@
 #include <stdlib.h>
 //#inclide "ft_list.h"
 
-int		ft_count(t_list *lst)
-{
-	int i;
-
-	i = 0;
-	while (lst)
-	{
-		lst = lst->next;
-		i++;
-	}
-}
-
-int		count(t_list *lst)
+int			count(t_list *lst)
 {
 	int i;
 
@@ -28,24 +16,24 @@ int		count(t_list *lst)
 	return (i);
 }
 
-t_list	*sort_list(t_list* lst, int (*cmp)(int, int))
+t_list		*sort_list(t_list* lst, int (*cmp)(int, int))
 {
-	t_list 	*new;
+	t_list *tmp;
+	int		fff;
 	int		len;
-	int		ps;
 
-	ps = 0;
-	len = ft_count(lst);
+	i = 0;
+	len = count(lst);
 	while (len)
 	{
-		new = lst;
-		while (new)
+		tmp = lst;
+		while (tmp)
 		{
 			if (tmp->next && (*cmp)(tmp->data, tmp->next->data))
 			{
-				ps = tmp->data;
+				fff = tmp->data;
 				tmp->data = tmp->next->data;
-				tmp->next->data = ps;
+				tmp->next->data = fff;
 			}
 			tmp = tmp->next;
 		}
